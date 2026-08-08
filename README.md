@@ -1,64 +1,35 @@
-# Franki Chamaki personal site — V4
+# frankichamaki.com — V5.1
 
-Production-ready static site for `frankichamaki.com`, with a server-side Resend contact form designed for Vercel.
+Production-ready one-page personal site for Franki Chamaki, deployed through GitHub → Vercel.
 
-## Final visual fixes in V4
-- Restored the hero portrait to its natural aspect ratio so it is never stretched or squashed.
-- Kept the portrait in front of the pink halftone/glow treatment.
-- Increased the default contrast of all footer social icons so they are clearly visible before hover. Hover still changes them to hot pink.
-- Preserved the V3 contact form, audience proof, project callouts, SEO/AEO metadata and structured data.
+## V5.1 changes
+- Carries forward V5 favicon/photo, form success-state, social-icon visibility and pink shimmer UI.
+- Fixes Resend direct API calls by adding the required `User-Agent` header.
+- Adds GA4 global loading through `/api/ga-config` using the Vercel `GA_MEASUREMENT_ID` environment variable.
+- Adds root-level `robots.txt`, `sitemap.xml` and `llms.txt`.
+- Standardises canonical URLs on `https://www.frankichamaki.com/`.
+- Adds Search Console verification guidance.
 
-## Resend setup
-The API key stays server-side in Vercel. Never paste the real key into `index.html`, `styles.css` or `script.js`.
-
-Add these Environment Variables in Vercel:
+## Required Vercel environment variables
 
 ```text
 RESEND_API_KEY=re_xxxxxxxxx
-RESEND_FROM_EMAIL=Franki Chamaki Website <hello@frankichamaki.com>
+RESEND_FROM_EMAIL=Franki Chamaki Website <onboarding@resend.dev>
 CONTACT_TO_EMAIL=frankichamaki@gmail.com
+GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
-`RESEND_FROM_EMAIL` must use a sender/domain permitted by your Resend account. Verify `frankichamaki.com` in Resend before using `hello@frankichamaki.com` as the sender.
+`GA_MEASUREMENT_ID` can be left unset until the real GA4 Measurement ID is available. The site will not load GA4 for the placeholder `G-XXXXXXXXXX`.
 
-## Local preview
-Visual/static preview only:
+## Resend testing
+When using `onboarding@resend.dev`, delivery is limited to the email address associated with the Resend account. For production sending to other recipients, verify `frankichamaki.com` in Resend and use a sender on that verified domain.
 
-```bash
-python3 -m http.server 8080
-```
+## Search Console
+The exact Search Console verification file/token is unique to your Google account and is not included because no token was supplied. See `SEARCH-CONSOLE.md`.
 
-Full form test through Vercel:
+## SEO/AEO files
+- `https://www.frankichamaki.com/robots.txt`
+- `https://www.frankichamaki.com/sitemap.xml`
+- `https://www.frankichamaki.com/llms.txt`
 
-```bash
-npx vercel dev
-```
-
-For local form testing, create `.env.local` containing the three Resend variables. `.env.local` is ignored by Git.
-
-## GitHub repository
-Recommended repository name:
-
-```text
-frankicham/frankichamaki.com
-```
-
-The connected GitHub account is `frankicham`. If that repository does not exist yet, the terminal commands in `DEPLOY.md` create it with GitHub CLI and push this folder.
-
-## Vercel deployment
-You can deploy this folder directly with Vercel CLI, or import the GitHub repository into your Vercel account. Git integration is recommended because every future push to `main` can deploy automatically.
-
-After deploying, add `frankichamaki.com` and optionally `www.frankichamaki.com` in Vercel Project Settings → Domains. Vercel will show the exact DNS records required by your registrar.
-
-## Main files
-- `index.html` — page structure, SEO metadata and Person/FAQ structured data
-- `styles.css` — responsive visual system
-- `script.js` — navigation and contact-form UX
-- `api/contact.js` — server-side Resend form endpoint
-- `.env.example` — variable names only; no secret values
-- `assets/franki-cutout.png` — hero portrait
-- `assets/gtm-sprint.png` — GTM Sprint project visual
-- `assets/alex-yellow-door.png` — Alex & The Yellow Door project visual
-- `robots.txt`
-- `sitemap.xml`
-- `DEPLOY.md` — copy/paste launch instructions
+The sitemap is intentionally static for V5.1 because the site currently has one canonical public page. Move to build-generated sitemap creation when additional on-site pages are introduced.

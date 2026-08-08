@@ -11,9 +11,11 @@ const clean = (value, max) => String(value || '').trim().slice(0, max);
 const validEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 module.exports = async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store');
+
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
-    return res.status(405).json({ error: 'Method not allowed.' });
+    return res.status(405).json({ ok: false, error: 'Method not allowed.' });
   }
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -21,19 +23,20 @@ module.exports = async function handler(req, res) {
   const toEmail = process.env.CONTACT_TO_EMAIL || 'frankichamaki@gmail.com';
 
   if (!apiKey || !fromEmail) {
+    console.error('Contact form configuration missing', {
+      hasApiKey: Boolean(apiKey),
+      hasFromEmail: Boolean(fromEmail),
+      hasToEmail: Boolean(toEmail)
+    });
     return res.status(500).json({
-      error: 'The contact form is not configured yet. Add RESEND_API_KEY and RESEND_FROM_EMAIL in your deployment environment.'
+      ok: false,
+      error: 'The contact form is not configured yet. Please try again shortly.'
     });
   }
 
   let body = req.body || {};
   if (typeof body === 'string') {
     try { body = JSON.parse(body); } catch (_) { body = {}; }
-  }
-
-  // Honeypot: return success without sending anything.
-  if (clean(body.companyWebsite, 200)) {
-    return res.status(200).json({ ok: true });
   }
 
   const firstName = clean(body.firstName, 80);
@@ -43,7 +46,7 @@ module.exports = async function handler(req, res) {
   const question = clean(body.question, 5000);
 
   if (!firstName || !lastName || !title || !email || !question || !validEmail(email)) {
-    return res.status(400).json({ error: 'Please complete all fields with a valid email address.' });
+    return res.status(400).json({ ok: false, error: 'Please complete all fields with a valid email address.' });
   }
 
   const fullName = `${firstName} ${lastName}`;
@@ -76,7 +79,8 @@ module.exports = async function handler(req, res) {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-Agent': 'frankichamaki.com-contact/5.1'
       },
       body: JSON.stringify({
         from: fromEmail,
@@ -94,14 +98,31 @@ module.exports = async function handler(req, res) {
 
     const payload = await resendResponse.json().catch(() => ({}));
 
-    if (!resendResponse.ok) {
-      console.error('Resend error', resendResponse.status, payload);
-      return res.status(502).json({ error: 'Your message could not be sent right now. Please try again shortly.' });
+    if (!resendResponse.ok || !payload.id) {
+      console.error('Resend rejected contact email', {
+        status: resendResponse.status,
+        payload
+      });
+
+      if (resendResponse.status === 403) {
+        return res.status(502).json({
+          ok: false,
+          error: 'The email service rejected this test sender. Please try again shortly.'
+        });
+      }
+
+      return res.status(502).json({
+        ok: false,
+        error: 'Your message could not be sent right now. Please try again shortly.'
+      });
     }
 
     return res.status(200).json({ ok: true, id: payload.id });
   } catch (error) {
     console.error('Contact form error', error);
-    return res.status(502).json({ error: 'Your message could not be sent right now. Please try again shortly.' });
+    return res.status(502).json({
+      ok: false,
+      error: 'Your message could not be sent right now. Please try again shortly.'
+    });
   }
 };

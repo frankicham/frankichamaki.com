@@ -7,13 +7,17 @@
   <meta name="description" content="Franki Chamaki is a Sydney-based B2B GTM strategist and demand generation leader helping SaaS, AI and technology companies build full-funnel growth systems, performance marketing programs and measurable pipeline." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="author" content="Franki Chamaki" />
-  <link rel="canonical" href="https://frankichamaki.com/" />
+  <link rel="canonical" href="https://www.frankichamaki.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Franki Chamaki | GTM Strategist. Growth Operator. Builder." />
   <meta property="og:description" content="I build go-to-market engines that turn attention into growth." />
-  <meta property="og:url" content="https://frankichamaki.com/" />
+  <meta property="og:url" content="https://www.frankichamaki.com/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#ff006e" />
+  <link rel="icon" type="image/png" href="assets/franki-cutout.png" />
+  <link rel="apple-touch-icon" href="assets/franki-cutout.png" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.google-analytics.com" />
   <link rel="stylesheet" href="styles.css" />
 
   <script type="application/ld+json">
@@ -21,8 +25,8 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Franki Chamaki",
-    "url": "https://frankichamaki.com/",
-    "image": "https://frankichamaki.com/assets/franki-cutout.png",
+    "url": "https://www.frankichamaki.com/",
+    "image": "https://www.frankichamaki.com/assets/franki-cutout.png",
     "jobTitle": "Head of Demand Generation",
     "worksFor": {"@type":"Organization","name":"Think & Grow"},
     "description": "B2B SaaS demand generation and digital marketing leader specialising in go-to-market strategy, full-funnel demand generation, performance marketing, SEO, marketing automation and growth analytics.",
@@ -30,7 +34,7 @@
       "https://www.linkedin.com/in/frankichamaki/",
       "https://www.youtube.com/@FrankiChamaki",
       "https://www.instagram.com/frankichamaki",
-      "https://twitter.com/frankichamaki",
+      "https://x.com/frankichamaki",
       "https://gtmsprint.run/",
       "https://www.alexandtheyellowdoor.com/"
     ],
@@ -263,37 +267,39 @@
         </div>
 
         <form class="contact-form" id="contact-form" action="/api/contact" method="post" novalidate>
-          <div class="form-grid">
-            <div class="field">
-              <label for="firstName">First name</label>
-              <input id="firstName" name="firstName" type="text" autocomplete="given-name" maxlength="80" required />
+          <div class="form-content" id="form-content">
+            <div class="form-grid">
+              <div class="field">
+                <label for="firstName">First name</label>
+                <input id="firstName" name="firstName" type="text" autocomplete="given-name" maxlength="80" required />
+              </div>
+              <div class="field">
+                <label for="lastName">Last name</label>
+                <input id="lastName" name="lastName" type="text" autocomplete="family-name" maxlength="80" required />
+              </div>
+              <div class="field field-full">
+                <label for="title">Title</label>
+                <input id="title" name="title" type="text" autocomplete="organization-title" maxlength="120" placeholder="Founder, Head of Growth, CMO…" required />
+              </div>
+              <div class="field field-full">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" maxlength="160" required />
+              </div>
+              <div class="field field-full">
+                <label for="question">Question</label>
+                <textarea id="question" name="question" rows="6" maxlength="5000" placeholder="What are you trying to solve?" required></textarea>
+              </div>
             </div>
-            <div class="field">
-              <label for="lastName">Last name</label>
-              <input id="lastName" name="lastName" type="text" autocomplete="family-name" maxlength="80" required />
-            </div>
-            <div class="field field-full">
-              <label for="title">Title</label>
-              <input id="title" name="title" type="text" autocomplete="organization-title" maxlength="120" placeholder="Founder, Head of Growth, CMO…" required />
-            </div>
-            <div class="field field-full">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email" maxlength="160" required />
-            </div>
-            <div class="field field-full">
-              <label for="question">Question</label>
-              <textarea id="question" name="question" rows="6" maxlength="5000" placeholder="What are you trying to solve?" required></textarea>
+
+            <div class="form-actions">
+              <button class="button button-pink submit-button" type="submit">Send enquiry <span aria-hidden="true">→</span></button>
+              <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
             </div>
           </div>
 
-          <div class="honeypot" aria-hidden="true">
-            <label for="companyWebsite">Company website</label>
-            <input id="companyWebsite" name="companyWebsite" type="text" tabindex="-1" autocomplete="off" />
-          </div>
-
-          <div class="form-actions">
-            <button class="button button-pink submit-button" type="submit">Send enquiry <span aria-hidden="true">→</span></button>
-            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <div class="form-success-panel" id="form-success-panel" role="status" aria-live="polite" tabindex="-1" hidden>
+            <span class="success-mark" aria-hidden="true">✓</span>
+            <p>Thanks — your enquiry has been sent. I’ll get back to you directly.</p>
           </div>
         </form>
       </div>
@@ -312,7 +318,7 @@
         <a class="social-icon" href="https://www.youtube.com/@FrankiChamaki" target="_blank" rel="noopener" aria-label="YouTube">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6.5" width="17" height="11" rx="3"/><path d="m10 9.5 5 2.5-5 2.5z"/></svg>
         </a>
-        <a class="social-icon" href="https://twitter.com/frankichamaki" target="_blank" rel="noopener" aria-label="X / Twitter">
+        <a class="social-icon" href="https://x.com/frankichamaki" target="_blank" rel="noopener" aria-label="X / Twitter">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg>
         </a>
         <a class="social-icon" href="https://www.instagram.com/frankichamaki" target="_blank" rel="noopener" aria-label="Instagram">

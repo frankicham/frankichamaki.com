@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://frankichamaki.com/sitemap.xml
+Sitemap: https://www.frankichamaki.com/sitemap.xml

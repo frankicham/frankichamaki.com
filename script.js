@@ -1,3 +1,32 @@
+// GA4 is configured server-side through /api/ga-config so the Measurement ID
+// can live in Vercel Environment Variables without being hard-coded here.
+(async function initGA4() {
+  try {
+    const response = await fetch('/api/ga-config', { cache: 'no-store' });
+    if (!response.ok) return;
+    const { measurementId } = await response.json();
+    if (!measurementId || measurementId === 'G-XXXXXXXXXX' || !/^G-[A-Z0-9]+$/i.test(measurementId)) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
+
+    const tag = document.createElement('script');
+    tag.async = true;
+    tag.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+    document.head.appendChild(tag);
+
+    window.gtag('js', new Date());
+    window.gtag('config', measurementId, {
+      send_page_view: true,
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: window.location.pathname + window.location.search
+    });
+  } catch (error) {
+    console.warn('GA4 did not initialise', error);
+  }
+})();
+
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.site-nav');
 
@@ -22,8 +51,10 @@ if (year) year.textContent = new Date().getFullYear();
 
 const form = document.getElementById('contact-form');
 const statusEl = document.getElementById('form-status');
+const formContent = document.getElementById('form-content');
+const successPanel = document.getElementById('form-success-panel');
 
-if (form && statusEl) {
+if (form && statusEl && formContent && successPanel) {
   const submitButton = form.querySelector('.submit-button');
 
   const setStatus = (message, type = '') => {
@@ -32,7 +63,7 @@ if (form && statusEl) {
   };
 
   const markValidity = () => {
-    form.querySelectorAll('input:not([type="hidden"]), textarea').forEach(field => {
+    form.querySelectorAll('input, textarea').forEach(field => {
       field.setAttribute('aria-invalid', field.validity.valid ? 'false' : 'true');
     });
   };
@@ -63,16 +94,18 @@ if (form && statusEl) {
       let result = {};
       try { result = await response.json(); } catch (_) {}
 
-      if (!response.ok) {
+      if (!response.ok || !result.ok) {
         throw new Error(result.error || 'Your message could not be sent. Please try again.');
       }
 
       form.reset();
       form.querySelectorAll('[aria-invalid]').forEach(field => field.removeAttribute('aria-invalid'));
-      setStatus('Thanks — your enquiry has been sent. I’ll get back to you directly.', 'success');
+      form.classList.add('is-sent');
+      formContent.hidden = true;
+      successPanel.hidden = false;
+      successPanel.focus({ preventScroll: true });
     } catch (error) {
       setStatus(error.message || 'Your message could not be sent. Please try again.', 'error');
-    } finally {
       submitButton.disabled = false;
       submitButton.innerHTML = 'Send enquiry <span aria-hidden="true">→</span>';
     }
