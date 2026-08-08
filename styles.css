@@ -188,11 +188,11 @@ details p { padding:0 18px 18px; margin:0; color:#565b64; font-size:14px; }
 .footer p { margin:0; font-size:12px; color:#cfd1d5; }
 .footer a { text-decoration:none; color:#fff; }
 .footer-social { display:flex; gap:12px; align-items:center; justify-content:flex-end; }
-.social-icon { width:46px; height:46px; border:1.5px solid rgba(255,0,110,.58); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:#fff; color:var(--pink); box-shadow:0 4px 14px rgba(255,0,110,.15); opacity:1; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease; position:relative; overflow:hidden; isolation:isolate; }
+.footer a.social-icon { width:46px; height:46px; border:1.5px solid rgba(255,0,110,.72); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:#fff; color:var(--pink); box-shadow:0 4px 14px rgba(255,0,110,.15); opacity:1; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, color .18s ease; position:relative; overflow:hidden; isolation:isolate; }
 .social-icon::after { content:""; position:absolute; z-index:-1; top:-80%; left:-80%; width:44%; height:260%; transform:skewX(-22deg); background:linear-gradient(90deg, transparent, rgba(255,0,110,.05), rgba(255,255,255,.96), rgba(255,0,110,.30), transparent); opacity:0; pointer-events:none; animation:social-shimmer 3.4s ease-in-out infinite; }
 .social-icon svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 .social-icon svg .icon-fill { fill:currentColor; stroke:none; }
-.social-icon:hover, .social-icon:focus-visible { border-color:var(--pink); color:var(--pink); transform:translateY(-2px); box-shadow:0 9px 24px rgba(255,0,110,.24); }
+.footer a.social-icon:hover, .footer a.social-icon:focus-visible { border-color:var(--pink); color:var(--pink); transform:translateY(-2px); box-shadow:0 9px 24px rgba(255,0,110,.24); }
 .social-icon:hover::after, .social-icon:focus-visible::after { animation:pink-shimmer .72s ease-out; }
 @keyframes social-shimmer { 0%, 58% { left:-80%; opacity:0; } 68% { opacity:.95; } 82% { left:140%; opacity:0; } 100% { left:140%; opacity:0; } }
 .footer-bottom { border-top:1px solid #272a2e; margin-top:18px; padding-top:12px; display:flex; justify-content:space-between; font-size:11px; color:#9fa3aa; }
