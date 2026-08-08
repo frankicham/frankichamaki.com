@@ -33,3 +33,10 @@ The exact Search Console verification file/token is unique to your Google accoun
 - `https://www.frankichamaki.com/llms.txt`
 
 The sitemap is intentionally static for V5.1 because the site currently has one canonical public page. Move to build-generated sitemap creation when additional on-site pages are introduced.
+
+
+## V5.2 polish
+- Renamed Growth Infrastructure & Analytics to AI Growth Automation Analytics.
+- Updated capability copy to cover AI workflow automation, attribution, enablement and experimentation.
+- Social icons are hot pink by default with a subtle shimmer effect.
+- Back to top now uses an explicit smooth-scroll handler with `#top` as a fallback.

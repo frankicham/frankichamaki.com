@@ -111,3 +111,15 @@ if (form && statusEl && formContent && successPanel) {
     }
   });
 }
+
+
+// Robust back-to-top control: preserve the #top fallback while ensuring
+// consistent scrolling across browsers and sticky-header layouts.
+const backToTop = document.querySelector('.back-to-top');
+if (backToTop) {
+  backToTop.addEventListener('click', event => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    if (history.replaceState) history.replaceState(null, '', '#top');
+  });
+}
