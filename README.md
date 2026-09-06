@@ -40,3 +40,12 @@ The sitemap is intentionally static for V5.1 because the site currently has one 
 - Updated capability copy to cover AI workflow automation, attribution, enablement and experimentation.
 - Social icons are hot pink by default with a subtle shimmer effect.
 - Back to top now uses an explicit smooth-scroll handler with `#top` as a fallback.
+
+## Cloudflare Turnstile
+
+The contact form is protected by Turnstile. Configure these Vercel Environment Variables for Production and Preview:
+
+- `TURNSTILE_SITE_KEY` — public site key for the `frankichamaki.com` Turnstile widget.
+- `TURNSTILE_SECRET_KEY` — private secret key; never commit the real value to GitHub.
+
+The browser obtains the public site key from `/api/turnstile-config`. `/api/contact` validates every Turnstile token with Cloudflare Siteverify before calling Resend.

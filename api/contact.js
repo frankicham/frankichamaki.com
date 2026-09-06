@@ -1,4 +1,5 @@
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
+const TURNSTILE_VERIFY_ENDPOINT = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
 const escapeHtml = (value = '') => String(value)
   .replaceAll('&', '&amp;')
@@ -21,12 +22,14 @@ module.exports = async function handler(req, res) {
   const apiKey = process.env.RESEND_API_KEY;
   const fromEmail = process.env.RESEND_FROM_EMAIL;
   const toEmail = process.env.CONTACT_TO_EMAIL || 'frankichamaki@gmail.com';
+  const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
 
-  if (!apiKey || !fromEmail) {
+  if (!apiKey || !fromEmail || !turnstileSecret) {
     console.error('Contact form configuration missing', {
       hasApiKey: Boolean(apiKey),
       hasFromEmail: Boolean(fromEmail),
-      hasToEmail: Boolean(toEmail)
+      hasToEmail: Boolean(toEmail),
+      hasTurnstileSecret: Boolean(turnstileSecret)
     });
     return res.status(500).json({
       ok: false,
@@ -44,9 +47,47 @@ module.exports = async function handler(req, res) {
   const title = clean(body.title, 120);
   const email = clean(body.email, 160).toLowerCase();
   const question = clean(body.question, 5000);
+  const turnstileToken = clean(body.turnstileToken || body['cf-turnstile-response'], 4096);
 
   if (!firstName || !lastName || !title || !email || !question || !validEmail(email)) {
     return res.status(400).json({ ok: false, error: 'Please complete all fields with a valid email address.' });
+  }
+
+  if (!turnstileToken) {
+    return res.status(400).json({ ok: false, error: 'Please complete the security verification.' });
+  }
+
+  try {
+    const forwardedFor = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+    const verificationPayload = {
+      secret: turnstileSecret,
+      response: turnstileToken
+    };
+    if (forwardedFor) verificationPayload.remoteip = forwardedFor;
+
+    const turnstileResponse = await fetch(TURNSTILE_VERIFY_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(verificationPayload)
+    });
+    const turnstileResult = await turnstileResponse.json().catch(() => ({}));
+
+    if (!turnstileResponse.ok || !turnstileResult.success) {
+      console.warn('Turnstile verification failed', {
+        status: turnstileResponse.status,
+        errorCodes: turnstileResult['error-codes'] || []
+      });
+      return res.status(400).json({
+        ok: false,
+        error: 'Security verification failed. Please try again.'
+      });
+    }
+  } catch (error) {
+    console.error('Turnstile verification error', error);
+    return res.status(502).json({
+      ok: false,
+      error: 'Security verification is temporarily unavailable. Please try again shortly.'
+    });
   }
 
   const fullName = `${firstName} ${lastName}`;
@@ -80,7 +121,7 @@ module.exports = async function handler(req, res) {
       headers: {
         Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
-        'User-Agent': 'frankichamaki.com-contact/5.1'
+        'User-Agent': 'frankichamaki.com-contact/5.4'
       },
       body: JSON.stringify({
         from: fromEmail,

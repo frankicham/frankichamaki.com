@@ -23,3 +23,12 @@ After Vercel finishes deploying, confirm:
 
 ## Search Console
 Use a Domain property + DNS TXT verification, or add Google's exact HTML verification file to the repository root. See `SEARCH-CONSOLE.md`.
+
+## Turnstile variables
+
+In Vercel → Project → Settings → Environment Variables, add:
+
+- `TURNSTILE_SITE_KEY`
+- `TURNSTILE_SECRET_KEY`
+
+Apply both to Production and Preview, then redeploy. The secret key is used only by `/api/contact`.

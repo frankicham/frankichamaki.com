@@ -53,9 +53,67 @@ const form = document.getElementById('contact-form');
 const statusEl = document.getElementById('form-status');
 const formContent = document.getElementById('form-content');
 const successPanel = document.getElementById('form-success-panel');
+const turnstileContainer = document.getElementById('turnstile-widget');
+const turnstileTokenInput = document.getElementById('turnstile-token');
+let turnstileWidgetId = null;
+
+const waitForTurnstile = () => new Promise((resolve, reject) => {
+  let attempts = 0;
+  const timer = setInterval(() => {
+    attempts += 1;
+    if (window.turnstile && typeof window.turnstile.render === 'function') {
+      clearInterval(timer);
+      resolve(window.turnstile);
+    } else if (attempts >= 100) {
+      clearInterval(timer);
+      reject(new Error('Security verification could not load. Please refresh and try again.'));
+    }
+  }, 100);
+});
 
 if (form && statusEl && formContent && successPanel) {
   const submitButton = form.querySelector('.submit-button');
+
+  const initTurnstile = async () => {
+    if (!turnstileContainer || !turnstileTokenInput) return;
+
+    try {
+      const response = await fetch('/api/turnstile-config', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Security verification is not configured.');
+      const { siteKey } = await response.json();
+      if (!siteKey) throw new Error('Security verification is not configured.');
+
+      const turnstile = await waitForTurnstile();
+      turnstileWidgetId = turnstile.render(turnstileContainer, {
+        sitekey: siteKey,
+        theme: 'light',
+        size: 'flexible',
+        appearance: 'always',
+        action: 'contact_form',
+        callback: token => {
+          turnstileTokenInput.value = token;
+          submitButton.disabled = false;
+          if (statusEl.classList.contains('error')) {
+            statusEl.textContent = '';
+            statusEl.className = 'form-status';
+          }
+        },
+        'expired-callback': () => {
+          turnstileTokenInput.value = '';
+          submitButton.disabled = true;
+          setStatus('Security verification expired. Please complete it again.', 'error');
+        },
+        'error-callback': () => {
+          turnstileTokenInput.value = '';
+          submitButton.disabled = true;
+          setStatus('Security verification could not complete. Please try again.', 'error');
+        }
+      });
+    } catch (error) {
+      submitButton.disabled = true;
+      setStatus(error.message || 'Security verification could not load. Please refresh and try again.', 'error');
+    }
+  };
 
   const setStatus = (message, type = '') => {
     statusEl.textContent = message;
@@ -76,6 +134,11 @@ if (form && statusEl && formContent && successPanel) {
       setStatus('Please complete all fields with a valid email address.', 'error');
       const firstInvalid = form.querySelector(':invalid');
       if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    if (!turnstileTokenInput || !turnstileTokenInput.value) {
+      setStatus('Please complete the security verification.', 'error');
       return;
     }
 
@@ -106,10 +169,18 @@ if (form && statusEl && formContent && successPanel) {
       successPanel.focus({ preventScroll: true });
     } catch (error) {
       setStatus(error.message || 'Your message could not be sent. Please try again.', 'error');
-      submitButton.disabled = false;
       submitButton.innerHTML = 'Send enquiry <span aria-hidden="true">→</span>';
+      if (window.turnstile && turnstileWidgetId !== null) {
+        window.turnstile.reset(turnstileWidgetId);
+        turnstileTokenInput.value = '';
+        submitButton.disabled = true;
+      } else {
+        submitButton.disabled = false;
+      }
     }
   });
+
+  initTurnstile();
 }
 
 
