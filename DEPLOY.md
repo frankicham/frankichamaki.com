@@ -32,3 +32,6 @@ In Vercel → Project → Settings → Environment Variables, add:
 - `TURNSTILE_SECRET_KEY`
 
 Apply both to Production and Preview, then redeploy. The secret key is used only by `/api/contact`.
+
+
+V6.2 adds structured data only; existing Vercel environment variables do not need to change.

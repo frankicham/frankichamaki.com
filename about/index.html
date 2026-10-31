@@ -20,7 +20,89 @@
   <link rel="preconnect" href="https://www.google-analytics.com" />
   <link rel="stylesheet" href="/styles.css" />
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Person","name":"Franki Chamaki","url":"https://www.frankichamaki.com/","jobTitle":"Head of Demand Generation","worksFor":{"@type":"Organization","name":"Think & Grow"},"sameAs":["https://www.linkedin.com/in/frankichamaki/","https://www.youtube.com/@FrankiChamaki","https://gtmsprint.run/"]}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": "https://www.frankichamaki.com/about/#profilepage",
+      "url": "https://www.frankichamaki.com/about/",
+      "name": "About Franki Chamaki",
+      "description": "Meet Franki Chamaki, Head of Demand Generation at Think & Grow and former HIVERY co-founder, focused on AI-powered GTM systems and growth.",
+      "mainEntity": {
+        "@id": "https://www.frankichamaki.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://www.frankichamaki.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://www.frankichamaki.com/about/#breadcrumb"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.frankichamaki.com/#person",
+      "name": "Franki Chamaki",
+      "url": "https://www.frankichamaki.com/",
+      "image": "https://www.frankichamaki.com/assets/franki-cutout.png",
+      "jobTitle": "Head of Demand Generation",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Think & Grow"
+      },
+      "description": "AI Growth Marketer and GTM systems builder specialising in AI-powered go-to-market systems, signal-based outbound, account-based marketing, demand generation, AI agents, marketing automation and AI search visibility.",
+      "sameAs": [
+        "https://www.linkedin.com/in/frankichamaki/",
+        "https://www.youtube.com/@FrankiChamaki",
+        "https://www.instagram.com/frankichamaki",
+        "https://x.com/frankichamaki",
+        "https://gtmsprint.run/",
+        "https://www.alexandtheyellowdoor.com/"
+      ],
+      "knowsAbout": [
+        "AI growth marketing",
+        "AI-powered go-to-market systems",
+        "GTM systems",
+        "Signal-based outbound",
+        "Account-based marketing",
+        "AI agents for marketing and sales",
+        "Marketing automation",
+        "AI search visibility",
+        "AEO and GEO",
+        "B2B demand generation",
+        "Growth experimentation"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.frankichamaki.com/#website",
+      "url": "https://www.frankichamaki.com/",
+      "name": "Franki Chamaki",
+      "description": "Franki Chamaki's personal site covering AI growth marketing, GTM systems, demand generation and practical AI workflows.",
+      "publisher": {
+        "@id": "https://www.frankichamaki.com/#person"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.frankichamaki.com/about/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.frankichamaki.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "About Franki Chamaki",
+          "item": "https://www.frankichamaki.com/about/"
+        }
+      ]
+    }
+  ]
+}
   </script>
 </head><body>
   <a class="skip-link" href="#main">Skip to content</a>
