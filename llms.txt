@@ -7,6 +7,16 @@
 - [About Franki Chamaki](https://www.frankichamaki.com/about/) - Background, experience, working approach and tools
 - [AI & GTM Systems Projects](https://www.frankichamaki.com/projects/) - Index of documented AI and GTM builds
 
+
+## What I do
+- [What I Do](https://www.frankichamaki.com/what-i-do/) - Capability hub for AI-powered GTM and growth systems
+- [Signal-Based GTM](https://www.frankichamaki.com/what-i-do/signal-based-gtm/) - ICP scoring, account intelligence, buying signals and prioritisation
+- [AI Sales Intelligence](https://www.frankichamaki.com/what-i-do/ai-sales-intelligence/) - CRM context, account signals and pre-call intelligence
+- [AI Outbound & ABM](https://www.frankichamaki.com/what-i-do/ai-outbound-abm/) - Account selection, personalisation and multichannel sales sequences
+- [AI Growth Automation](https://www.frankichamaki.com/what-i-do/ai-growth-automation/) - Agents and workflows connecting data, reasoning and action
+- [AI Search Visibility](https://www.frankichamaki.com/what-i-do/ai-search-visibility/) - Technical SEO, AEO/GEO, schema and content architecture
+- [Growth Experimentation](https://www.frankichamaki.com/what-i-do/growth-experimentation/) - Paid acquisition, conversion, attribution and test-and-learn systems
+
 ## Documented AI & GTM builds
 - [Contact Intel](https://www.frankichamaki.com/projects/contact-intel/) - Claude-powered pre-call intelligence used in Slack, combining HubSpot history, Clay growth signals and live company and sector news
 - [Target Account Intelligence Agent](https://www.frankichamaki.com/projects/target-account-intelligence/) - Clay, Apify and Claude workflow monitoring growth signals across 146 target accounts and posting weekly Slack briefs

@@ -1,37 +1,7 @@
-# V5.1 deployment — GitHub → Vercel
+# Deploy V6.3
 
-The production repository is `frankicham/frankichamaki.com` and Vercel is connected to `main`.
+This version is designed to replace the current static site while preserving the existing Vercel environment variables and serverless API files.
 
-## Vercel environment variables
-Keep the existing Resend variables and add:
+No Vercel environment-variable changes are required.
 
-```text
-GA_MEASUREMENT_ID=G-XXXXXXXXXX
-```
-
-Replace the placeholder with the real GA4 Measurement ID when created. A redeploy is recommended after changing the variable.
-
-## Production checks
-After Vercel finishes deploying, confirm:
-
-- `https://www.frankichamaki.com/`
-- `https://www.frankichamaki.com/robots.txt`
-- `https://www.frankichamaki.com/sitemap.xml`
-- `https://www.frankichamaki.com/llms.txt`
-- contact form sends and only displays the success state after Resend confirms delivery acceptance
-- GA4 Realtime shows a page view after a real `GA_MEASUREMENT_ID` is configured
-
-## Search Console
-Use a Domain property + DNS TXT verification, or add Google's exact HTML verification file to the repository root. See `SEARCH-CONSOLE.md`.
-
-## Turnstile variables
-
-In Vercel → Project → Settings → Environment Variables, add:
-
-- `TURNSTILE_SITE_KEY`
-- `TURNSTILE_SECRET_KEY`
-
-Apply both to Production and Preview, then redeploy. The secret key is used only by `/api/contact`.
-
-
-V6.2 adds structured data only; existing Vercel environment variables do not need to change.
+After deployment, test the homepage, `/what-i-do/`, all six capability pages, the three AI project pages, the contact form, `/api/turnstile-config`, and `sitemap.xml`.

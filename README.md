@@ -1,64 +1,13 @@
-# frankichamaki.com — V5.1
+# Franki Chamaki personal site — V6.3
 
-Production-ready one-page personal site for Franki Chamaki, deployed through GitHub → Vercel.
+V6.3 adds a crawlable What I Do capability architecture on top of V6.2.
 
-## V5.1 changes
-- Carries forward V5 favicon/photo, form success-state, social-icon visibility and pink shimmer UI.
-- Fixes Resend direct API calls by adding the required `User-Agent` header.
-- Adds GA4 global loading through `/api/ga-config` using the Vercel `GA_MEASUREMENT_ID` environment variable.
-- Adds root-level `robots.txt`, `sitemap.xml` and `llms.txt`.
-- Standardises canonical URLs on `https://www.frankichamaki.com/`.
-- Adds Search Console verification guidance.
+## New in V6.3
+- Homepage What I Do cards now link to substantive capability pages
+- New `/what-i-do/` hub
+- Six detailed capability pages with unique titles, meta descriptions, breadcrumbs and internal links
+- Project pages link back to relevant capabilities
+- Sitemap and llms.txt updated
+- Existing GA4, Resend and Cloudflare Turnstile setup preserved
 
-## Required Vercel environment variables
-
-```text
-RESEND_API_KEY=re_xxxxxxxxx
-RESEND_FROM_EMAIL=Franki Chamaki Website <onboarding@resend.dev>
-CONTACT_TO_EMAIL=frankichamaki@gmail.com
-GA_MEASUREMENT_ID=G-XXXXXXXXXX
-```
-
-`GA_MEASUREMENT_ID` can be left unset until the real GA4 Measurement ID is available. The site will not load GA4 for the placeholder `G-XXXXXXXXXX`.
-
-## Resend testing
-When using `onboarding@resend.dev`, delivery is limited to the email address associated with the Resend account. For production sending to other recipients, verify `frankichamaki.com` in Resend and use a sender on that verified domain.
-
-## Search Console
-The exact Search Console verification file/token is unique to your Google account and is not included because no token was supplied. See `SEARCH-CONSOLE.md`.
-
-## SEO/AEO files
-- `https://www.frankichamaki.com/robots.txt`
-- `https://www.frankichamaki.com/sitemap.xml`
-- `https://www.frankichamaki.com/llms.txt`
-
-The sitemap is intentionally static for V5.1 because the site currently has one canonical public page. Move to build-generated sitemap creation when additional on-site pages are introduced.
-
-
-## V5.2 polish
-- Renamed Growth Infrastructure & Analytics to AI Growth Automation Analytics.
-- Updated capability copy to cover AI workflow automation, attribution, enablement and experimentation.
-- Social icons are hot pink by default with a subtle shimmer effect.
-- Back to top now uses an explicit smooth-scroll handler with `#top` as a fallback.
-
-## Cloudflare Turnstile
-
-The contact form is protected by Turnstile. Configure these Vercel Environment Variables for Production and Preview:
-
-- `TURNSTILE_SITE_KEY` — public site key for the `frankichamaki.com` Turnstile widget.
-- `TURNSTILE_SECRET_KEY` — private secret key; never commit the real value to GitHub.
-
-The browser obtains the public site key from `/api/turnstile-config`. `/api/contact` validates every Turnstile token with Cloudflare Siteverify before calling Resend.
-
-
-## V6.2.0 positioning update
-
-Repositions frankichamaki.com around AI Growth Marketing and GTM Systems Building, adds a Things I've Built section, and updates SEO/AEO metadata while preserving the existing Resend, Turnstile and GA4 implementation.
-
-
-## V6.2 structured data update
-- Added WebSite entity markup to the homepage.
-- Added Google-supported ProfilePage structured data to /about/.
-- Added BreadcrumbList structured data to About, Projects and all three detailed AI build pages.
-- Preserved Person, FAQPage and project CreativeWork markup.
-- No changes to GA4, Resend or Cloudflare Turnstile configuration.
+The content separates documented work and outcomes from proposed benefits and does not invent AI-driven performance claims.
