@@ -51,6 +51,6 @@ The contact form is protected by Turnstile. Configure these Vercel Environment V
 The browser obtains the public site key from `/api/turnstile-config`. `/api/contact` validates every Turnstile token with Cloudflare Siteverify before calling Resend.
 
 
-## V6.0 positioning update
+## V6.1.0 positioning update
 
 Repositions frankichamaki.com around AI Growth Marketing and GTM Systems Building, adds a Things I've Built section, and updates SEO/AEO metadata while preserving the existing Resend, Turnstile and GA4 implementation.

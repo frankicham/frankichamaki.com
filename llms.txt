@@ -1,33 +1,28 @@
 # Franki Chamaki
 
-> Official website and professional hub for Franki Chamaki.
+> Official website and professional hub for Franki Chamaki, a Sydney-based AI Growth Marketer and GTM Systems Builder.
 
-This is the canonical website for Franki Chamaki: AI Growth Marketer, GTM systems builder, demand generation leader and entrepreneur based in Sydney, Australia. Franki builds AI-powered go-to-market systems that use agents, automation, signals, CRM context and experimentation to find, prioritise and convert pipeline.
+## Core pages
+- [Home](https://www.frankichamaki.com/) - AI growth marketing, GTM systems, demand generation and selected outcomes
+- [About Franki Chamaki](https://www.frankichamaki.com/about/) - Background, experience, working approach and tools
+- [AI & GTM Systems Projects](https://www.frankichamaki.com/projects/) - Index of documented AI and GTM builds
 
-## Core expertise
-
-- AI growth marketing and AI-powered GTM systems
-- Signal-based outbound and account-based marketing (ABM)
-- AI agents, workflow automation and sales intelligence
-- Clay, HubSpot, Claude, n8n, Make and connected GTM tools
-- AI search visibility, AEO/GEO and technical SEO
-- B2B demand generation, performance marketing and growth experimentation
-
-## Official website
-
-- [Franki Chamaki](https://www.frankichamaki.com/) - Official personal website and professional hub
+## Documented AI & GTM builds
+- [Contact Intel](https://www.frankichamaki.com/projects/contact-intel/) - Claude-powered pre-call intelligence used in Slack, combining HubSpot history, Clay growth signals and live company and sector news
+- [Target Account Intelligence Agent](https://www.frankichamaki.com/projects/target-account-intelligence/) - Clay, Apify and Claude workflow monitoring growth signals across 146 target accounts and posting weekly Slack briefs
+- [EngineRoom](https://www.frankichamaki.com/projects/engineroom/) - AI-assisted event follow-up from badge scan to HubSpot enrichment, follow-up brief and Gmail draft
 
 ## Professional project
-
-- [GTM Sprint](https://gtmsprint.run/) - GTM experiments and systems for founders
+- [GTM Sprint](https://gtmsprint.run/) - GTM experiments and support for solo founders
 
 ## Official profiles and channels
-
-- [LinkedIn](https://linkedin.com/in/frankichamaki) - Professional profile
+- [LinkedIn](https://www.linkedin.com/in/frankichamaki/) - Professional profile and writing
 - [YouTube](https://www.youtube.com/@FrankiChamaki) - Videos on AI, GTM, growth and practical business building
 - [X](https://x.com/frankichamaki) - Official X profile
 - [Instagram](https://www.instagram.com/frankichamaki) - Official Instagram profile
 
 ## Creative project
-
 - [Alex and the Yellow Door](https://www.alexandtheyellowdoor.com/) - Creative passion project
+
+## Evidence note
+Project pages separate documented status from proposed benefits. Quantified adoption, time-saving, conversion and revenue claims are not stated unless supported by evidence.
