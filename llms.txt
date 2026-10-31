@@ -37,3 +37,6 @@
 
 ## Evidence note
 Project pages separate documented status from proposed benefits. Quantified adoption, time-saving, conversion and revenue claims are not stated unless supported by evidence.
+
+- Signal-Based Outbound Engine: https://www.frankichamaki.com/projects/signal-based-outbound/
+- Signal Automation: Industry News Alerts: https://www.frankichamaki.com/projects/signal-automation/

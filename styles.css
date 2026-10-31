@@ -47,7 +47,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .button:hover::after, .button:focus-visible::after { animation:pink-shimmer .72s ease-out; }
 @keyframes pink-shimmer { 0% { left:-75%; opacity:0; } 18% { opacity:1; } 100% { left:135%; opacity:0; } }
 .button-pink { background:var(--pink); color:#fff; box-shadow:0 8px 22px rgba(255,0,110,.18); }
-.button-pink.button-yellow-text { color:#fff200; }
 .button-pink:hover { background:var(--pink-dark); box-shadow:0 10px 26px rgba(255,0,110,.25); }
 .button-dark { background:var(--ink); color:#fff; }
 .button-outline { border-color:#bec1c7; background:#fff; }
@@ -346,10 +345,6 @@ details p { padding:0 18px 18px; margin:0; color:#565b64; font-size:14px; }
 .article-toc a { color:#656a73; text-decoration:none; font-size:13px; }
 .article-toc a:hover { color:var(--pink); }
 .project-prose section { scroll-margin-top:100px; }
-.workflow-list { list-style:none; padding:0; margin:8px 0 0; display:grid; gap:10px; }
-.workflow-list li { display:grid; grid-template-columns:42px 1fr; gap:14px; border:1px solid var(--line); border-radius:12px; padding:16px; background:#fff; }
-.workflow-list li span { color:var(--pink); font-weight:950; }
-.workflow-list li p { margin:0; }
 .tool-chips { display:flex; flex-wrap:wrap; gap:8px; }
 .tool-chips span { border:1px solid #ffb3d2; background:#fff7fb; border-radius:999px; padding:8px 12px; color:#3f4248; font-weight:750; font-size:13px; }
 .status-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:10px; }
@@ -397,6 +392,30 @@ details p { padding:0 18px 18px; margin:0; color:#565b64; font-size:14px; }
 .project-built-line { margin:20px 0 0; color:#6a6e76; font-size:13px; font-weight:800; letter-spacing:.02em; }
 .project-prose ul:not(.workflow-list) { margin:10px 0 20px; padding-left:22px; display:grid; gap:8px; }
 .project-prose ul:not(.workflow-list) li { line-height:1.6; }
-.demo-placeholder { margin-top:18px; border:1px dashed #ff9bc4; background:#fff7fb; border-radius:12px; padding:18px; display:flex; flex-direction:column; gap:5px; }
-.demo-placeholder strong { color:var(--ink); }
-.demo-placeholder span { color:#686c74; font-size:13px; line-height:1.5; }
+
+/* V6.5 visual project workflows */
+.workflow-visual {
+  list-style:none; padding:0; margin:18px 0 0;
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px;
+}
+.workflow-visual li {
+  position:relative; min-height:168px; padding:18px; overflow:hidden;
+  border:1px solid #eadfe4; border-radius:16px;
+  background:linear-gradient(145deg,#fff 0%,#fff 70%,#fff3f8 100%);
+  box-shadow:0 10px 28px rgba(0,0,0,.045);
+}
+.workflow-visual li::after {
+  content:""; position:absolute; right:-24px; bottom:-28px; width:92px; height:92px;
+  border:18px solid rgba(255,0,110,.055); border-radius:50%;
+}
+.workflow-number {
+  display:inline-grid; place-items:center; width:38px; height:38px; margin-bottom:24px;
+  border-radius:50%; background:var(--pink); color:#fff;
+  font-size:11px; font-weight:950; letter-spacing:.05em;
+  box-shadow:0 8px 20px rgba(255,0,110,.22);
+}
+.workflow-visual strong { display:block; color:var(--ink); font-size:17px; line-height:1.1; margin-bottom:8px; letter-spacing:-.02em; }
+.workflow-visual p { margin:0 !important; color:#595e66; font-size:13px; line-height:1.5 !important; }
+.project-prose blockquote { margin:16px 0 22px; padding:18px 20px; border-left:4px solid var(--pink); background:#fff7fb; color:#43474e; border-radius:0 12px 12px 0; line-height:1.65; }
+@media (max-width:760px) { .workflow-visual { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:520px) { .workflow-visual { grid-template-columns:1fr; } .workflow-visual li { min-height:0; } }

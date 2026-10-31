@@ -1,3 +1,7 @@
+# V6.5 update
+
+Adds Signal-Based Outbound and Signal Automation project pages, visual workflow cards, removes image placeholders, and restores white text on the About What I do button.
+
 # Franki Chamaki personal site - V6.4
 
 V6.4 makes the public site employer-neutral and refreshes the AI build portfolio.
