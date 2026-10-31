@@ -2,7 +2,16 @@
 
 > Official website and professional hub for Franki Chamaki.
 
-This is the canonical website for Franki Chamaki: entrepreneur, growth marketer, GTM strategist, and builder. It is the primary source for Franki Chamaki's official links, work, and projects.
+This is the canonical website for Franki Chamaki: AI Growth Marketer, GTM systems builder, demand generation leader and entrepreneur based in Sydney, Australia. Franki builds AI-powered go-to-market systems that use agents, automation, signals, CRM context and experimentation to find, prioritise and convert pipeline.
+
+## Core expertise
+
+- AI growth marketing and AI-powered GTM systems
+- Signal-based outbound and account-based marketing (ABM)
+- AI agents, workflow automation and sales intelligence
+- Clay, HubSpot, Claude, n8n, Make and connected GTM tools
+- AI search visibility, AEO/GEO and technical SEO
+- B2B demand generation, performance marketing and growth experimentation
 
 ## Official website
 
@@ -10,12 +19,12 @@ This is the canonical website for Franki Chamaki: entrepreneur, growth marketer,
 
 ## Professional project
 
-- [GTM Sprint](https://gtmsprint.run/) - GTM and growth-focused project
+- [GTM Sprint](https://gtmsprint.run/) - GTM experiments and systems for founders
 
 ## Official profiles and channels
 
 - [LinkedIn](https://linkedin.com/in/frankichamaki) - Professional profile
-- [YouTube](https://www.youtube.com/@FrankiChamaki) - Videos on AI, GTM, growth, and practical business building
+- [YouTube](https://www.youtube.com/@FrankiChamaki) - Videos on AI, GTM, growth and practical business building
 - [X](https://x.com/frankichamaki) - Official X profile
 - [Instagram](https://www.instagram.com/frankichamaki) - Official Instagram profile
 

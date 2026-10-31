@@ -262,3 +262,23 @@ details p { padding:0 18px 18px; margin:0; color:#565b64; font-size:14px; }
   .footer-grid { grid-template-columns:1fr; }
   .footer-bottom { gap:20px; }
 }
+
+/* V6 AI Growth Marketer positioning */
+.build-section { background:linear-gradient(180deg,#fff 0%,#fff8fb 100%); padding-top:66px; }
+.build-heading { display:grid; grid-template-columns:1fr .8fr; gap:70px; align-items:end; margin-bottom:28px; }
+.build-heading > p { margin:0; color:#5b6068; max-width:520px; }
+.build-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+.build-card { display:grid; grid-template-columns:68px 1fr; border:1px solid var(--line); border-radius:16px; padding:26px; background:#fff; min-height:210px; box-shadow:0 10px 34px rgba(0,0,0,.035); transition:.2s ease; }
+.build-card:hover { transform:translateY(-4px); border-color:#ffb0d1; box-shadow:0 18px 48px rgba(255,0,110,.08); }
+.build-number { color:var(--pink); font-size:28px; font-weight:950; letter-spacing:-.05em; }
+.build-tag { display:block; color:var(--pink); font-size:10px; font-weight:950; letter-spacing:.09em; margin-bottom:8px; }
+.build-card h3 { margin:0 0 10px; font-size:22px; letter-spacing:-.03em; }
+.build-card p { margin:0; color:#525760; font-size:14px; }
+@media (max-width: 820px) {
+  .build-heading { grid-template-columns:1fr; gap:16px; }
+  .build-grid { grid-template-columns:1fr; }
+}
+@media (max-width: 520px) {
+  .build-card { grid-template-columns:48px 1fr; padding:20px; }
+  .build-number { font-size:22px; }
+}
