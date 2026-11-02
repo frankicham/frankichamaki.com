@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guess the GTM · Franki Chamaki</title>
+  <meta name="description" content="Ten visual GTM riddles. Can you beat the leaderboard?">
+  <style>
+    :root{--pink:#ff0066;--black:#08090d;--muted:#626570;--soft:#fff1f6;--line:#e8e8ec}
+    *{box-sizing:border-box}body{margin:0;background:#f7f7f9;color:var(--black);font-family:Inter,Arial,Helvetica,sans-serif}
+    button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.55}
+    .shell{max-width:1050px;min-height:100vh;margin:auto;background:white;box-shadow:0 20px 80px #17171709}
+    header{display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,5vw,66px);border-bottom:1px solid var(--line)}
+    .brand{font-size:23px;font-weight:950;letter-spacing:-1.6px;line-height:.79}.tag{color:var(--muted);font-size:12px;font-weight:750;letter-spacing:1.3px}
+    main{padding:30px clamp(20px,5vw,66px) 60px}h1{font-size:clamp(38px,6.8vw,76px);letter-spacing:-.07em;line-height:.98;margin:12px 0 18px;font-weight:950}h1 span,.pink{color:var(--pink)}
+    h2{letter-spacing:-.045em;line-height:1.1;font-size:clamp(25px,4vw,36px);margin:0 0 12px}p{color:var(--muted);font-size:16px;line-height:1.6}
+    .eyebrow{color:var(--pink);font-size:13px;letter-spacing:2px;font-weight:850}.layout{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:34px}
+    .hero-image,.clue{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:20px;background:var(--soft);border:1px solid #f7d6e4}
+    .primary{background:var(--pink);border:2px solid var(--pink);color:#fff;padding:16px 25px;border-radius:10px;font-weight:850;letter-spacing:.02em;box-shadow:0 10px 24px #ff006623}
+    .secondary{background:white;border:2px solid #c9cbd1;color:var(--black);padding:14px 22px;border-radius:10px;font-weight:800}
+    .primary:hover{background:#e5005c}.secondary:hover{border-color:var(--pink)}
+    .stats{display:flex;gap:12px;margin:26px 0}.stat{flex:1;background:var(--soft);padding:18px 8px;border-radius:13px;text-align:center}.stat b{font-size:24px;display:block}.stat small{color:var(--muted)}
+    .levels{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 24px}.pill{background:#f3f3f5;border-radius:100px;padding:7px 12px;font-size:12px;font-weight:850;letter-spacing:.04em}.pill.easy{color:#13853d;background:#e9f9ee}.pill.medium{color:#9c6500;background:#fff4d6}.pill.hard{color:#c72a51;background:#ffe7ef}
+    .game-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;font-weight:850;margin-bottom:14px}.score{color:var(--pink)}
+    .progress{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin-bottom:24px}.progress i{display:block;height:6px;background:#e9e9ed;border-radius:10px}.progress i.done{background:var(--pink)}
+    .question-grid{max-width:825px;margin:auto}.question-img{position:relative}.image-tag{position:absolute;bottom:14px;left:14px;background:#fffffff0;border-radius:30px;padding:7px 12px;font-size:11px;color:var(--pink);font-weight:850}
+    .prompt{text-align:center;font-size:29px;letter-spacing:-1.1px;margin:26px 0 18px;font-weight:900}
+    input{display:block;width:100%;padding:17px 18px;border-radius:10px;border:2px solid #d9d9de;font-size:17px;outline:none}
+    input:focus{border-color:var(--pink);box-shadow:0 0 0 4px #ff00661a}.actions{display:flex;gap:10px;margin-top:12px}.actions .primary{flex:1}
+    .hint,.feedback{border-radius:12px;padding:17px 19px;margin-top:14px;background:var(--soft);color:#3f3f46}.feedback.good{background:#e9faef}.feedback.bad{background:#fff3e8}.feedback h3{margin:0 0 7px;font-size:22px}.feedback p{margin:0;font-size:14px}
+    .results{max-width:750px;margin:auto}.scorebox{background:var(--soft);border:1px solid #ffcede;text-align:center;padding:28px;border-radius:20px;margin-bottom:24px}
+    .scorebox .number{font-size:clamp(48px,9vw,84px);font-weight:950;letter-spacing:-.06em;color:var(--pink);line-height:1.1}
+    label{font-size:14px;font-weight:750;display:block;margin:12px 0 7px}.card{border:1px solid var(--line);padding:23px;border-radius:16px;margin-bottom:20px}
+    .leader-row{display:flex;align-items:center;gap:14px;padding:13px 15px;background:#f7f7f9;border-radius:11px;margin-top:8px}.leader-row.me{background:var(--soft);outline:2px solid var(--pink)}
+    .rank{width:38px;font-weight:900}.person{flex:1;min-width:0}.person b,.person small{display:block}.person small{font-size:12px;color:var(--muted);margin-top:4px}
+    .leader-row strong{color:var(--pink)}.fine{font-size:12px;color:var(--muted)}
+    .outcomes{display:flex;gap:4px;justify-content:center;margin:16px 0}.outcomes span{width:26px;height:26px;display:grid;place-items:center;border-radius:50%;color:white;font-size:13px;font-weight:900}
+    .hidden{display:none!important}.footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;padding:18px clamp(20px,5vw,66px);font-size:11px;letter-spacing:.08em;font-weight:800}.footer span:last-child{color:var(--pink)}
+    @media(max-width:720px){.layout{grid-template-columns:1fr}.hero-image{order:-1}.stats{margin:18px 0}.stat{padding:12px 5px}.stat b{font-size:20px}.actions{flex-wrap:wrap}.actions button{flex:1}main{padding-top:25px}}
+  </style>
+</head>
+<body>
+<div class="shell">
+<header><div class="brand">FRANKI<br>CHAMAKI</div><div class="tag">GTM LAB / PROTOTYPE V5</div></header>
+<main>
+  <section id="welcome" class="layout">
+    <div>
+      <div class="eyebrow">THE VISUAL MARKETING CHALLENGE</div>
+      <h1>Can you <span>Guess the GTM?</span></h1>
+      <p>Ten miniature clay worlds. Ten marketing riddles. One leaderboard. How much GTM do you really know?</p>
+      <div class="stats"><div class="stat"><b>10</b><small>Riddles</small></div><div class="stat"><b>1,400</b><small>Max points</small></div><div class="stat"><b>3–5</b><small>Minutes</small></div></div>
+      <div class="levels"><span class="pill easy">4 EASY × 100</span><span class="pill medium">4 MEDIUM × 150</span><span class="pill hard">2 HARD × 200</span></div>
+      <button class="primary" id="start">LET'S PLAY ↗</button>
+    </div>
+    <img class="hero-image" src="Frosted Mailbox, Flying Envelopes.png" alt="Clay miniature frozen mailbox sending envelopes">
+  </section>
+  <section id="play" class="question-grid hidden">
+    <div class="game-head"><span id="number">RIDDLE 01 / 10</span><span class="pill easy" id="difficulty">EASY</span><span class="score" id="running-score">0 PTS</span></div>
+    <div class="progress" id="progress"></div>
+    <div class="question-img"><img class="clue" id="clue" alt="Miniature clay GTM visual riddle"><span class="image-tag">ORIGINAL CLAY ARTWORK</span></div>
+    <div class="prompt">What GTM term am I?</div>
+    <form id="guess-form"><input id="guess" type="text" aria-label="Your answer" placeholder="Type your answer…" autocomplete="off" required maxlength="100"><div class="actions" id="guess-actions"><button class="primary" type="submit">CHECK ANSWER</button><button class="secondary" type="button" id="hint-button">💡 HINT</button></div></form>
+    <div class="hint hidden" id="hint"></div>
+    <div class="feedback hidden" id="feedback" role="status"></div>
+    <div class="actions hidden" id="next-actions"><button class="primary" id="next">NEXT RIDDLE →</button></div>
+  </section>
+  <section id="results" class="results hidden">
+    <div class="scorebox"><div class="eyebrow">CHALLENGE COMPLETE</div><h2 id="rank-title">GROWTH PRO!</h2><div class="number" id="final-score">0 / 1,400</div><p id="correct-total"></p><div class="outcomes" id="outcomes"></div></div>
+    <div class="card" id="registration"><h2>Claim your leaderboard spot.</h2><p>Enter your name and job title to compare with the other test players.</p><form id="registration-form"><label for="player-name">Your name</label><input id="player-name" required maxlength="60" placeholder="Franki Chamaki"><label for="player-title">Job title</label><input id="player-title" required maxlength="80" placeholder="Head of Demand Generation"><div class="actions"><button class="primary" type="submit">JOIN LEADERBOARD →</button></div></form><p class="fine">Local test only. Your entry stays in this browser, not a public leaderboard.</p></div>
+    <div class="scorebox hidden" id="my-rank"><div class="eyebrow">YOUR DEMO RANK</div><div class="number" id="rank-number">#1</div><strong id="rank-name"></strong></div>
+    <h2>Leaderboard <span class="pill">DEMO</span></h2><div id="leaderboard"></div>
+    <div class="actions"><button class="primary" id="share">SHARE SCORE ↗</button><button class="secondary" id="again">PLAY AGAIN ↻</button></div>
+  </section>
+</main>
+<div class="footer"><span>© FRANKI CHAMAKI</span><span>GROWTH IS A GAME. PLAY SMART.</span></div>
+</div>
+<script>
+const game=[
+{answer:"Cold outbound",aliases:["cold outreach","cold emailing","cold email"],image:"Frosted Mailbox, Flying Envelopes.png",points:100,level:"EASY",hint:"The temperature of unsolicited prospecting.",detail:"Proactively contacting people who have no existing relationship with your business."},
+{answer:"Warm introduction",aliases:["warm intro","warm referral"],image:"Warm clay handshake with glowing envelope.png",points:100,level:"EASY",hint:"A trusted mutual connection opens a door.",detail:"Someone who knows both parties makes an introduction."},
+{answer:"Lead magnet",aliases:["lead magnets"],image:"Hot-Pink Horseshoe Pulls Tiny Prospects.png",points:100,level:"EASY",hint:"An offer that draws prospects in.",detail:"A valuable resource or offer designed to attract potential customers."},
+{answer:"Sales pipeline",aliases:["pipeline","sales pipe"],image:"Playful Clay Sales Pipeline.png",points:100,level:"EASY",hint:"Opportunities travel through stages.",detail:"The stages and opportunities in the sales process."},
+{answer:"Leaky funnel",aliases:["funnel leakage","leaking funnel","leaky sales funnel"],image:"Leaky funnel, slipping customers.png",points:150,level:"MEDIUM",hint:"Prospects are escaping before they convert.",detail:"A conversion process that loses prospects at avoidable points."},
+{answer:"Buying signals",aliases:["buyer intent","intent signals","buying signal","purchase intent"],image:"Clay basket broadcasting buying signals.png",points:150,level:"MEDIUM",hint:"Clues someone may be ready to purchase.",detail:"Behaviours or events suggesting a prospect is interested in buying."},
+{answer:"Growth hacking",aliases:["growth hacker"],image:"Miniature clay growth hacking garden.png",points:150,level:"MEDIUM",hint:"Creative experiments for rapid growth.",detail:"Rapid experimentation to identify efficient ways to grow."},
+{answer:"Customer churn",aliases:["churn","churn rate","customer attrition"],image:"Tiny Customers Take the Pink Exit.png",points:150,level:"MEDIUM",hint:"When customers leave.",detail:"The loss of existing customers or subscribers."},
+{answer:"Dark funnel",aliases:["dark social","dark funnel marketing"],image:"Tiny Teams Enter the Dark Funnel.png",points:200,level:"HARD",hint:"Buyer activity conventional attribution can't see.",detail:"Research and buyer interactions difficult to capture through conventional tracking."},
+{answer:"Multi-touch attribution",aliases:["multitouch attribution","multi touch attribution","multi touch"],image:"Four paths, one golden trophy.png",points:200,level:"HARD",hint:"Several interactions share conversion credit.",detail:"Assigning conversion credit across multiple marketing touchpoints."}
+];
+const $=id=>document.getElementById(id);
+const normalize=s=>s.toLowerCase().replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+let index=0,score=0,history=[],judged=false,player=null;
+function show(id){for(const section of ["welcome","play","results"])$(section).classList.toggle("hidden",section!==id)}
+function renderQuestion(){
+ const q=game[index];judged=false;$("number").textContent=`RIDDLE ${String(index+1).padStart(2,"0")} / 10`;
+ $("difficulty").textContent=q.level;$("difficulty").className="pill "+q.level.toLowerCase();
+ $("running-score").textContent=score.toLocaleString()+" PTS";
+ $("progress").replaceChildren(...game.map((_,i)=>{const b=document.createElement("i");if(i<=index)b.className="done";return b}));
+ $("clue").src=q.image;$("clue").alt="Miniature clay visual riddle "+(index+1);
+ $("guess").value="";$("guess").disabled=false;$("guess-actions").classList.remove("hidden");
+ $("hint").classList.add("hidden");$("feedback").classList.add("hidden");$("next-actions").classList.add("hidden");
+ $("next").textContent=index===9?"VIEW MY RESULTS →":"NEXT RIDDLE →";
+ $("guess").focus();
+}
+function submitGuess(e){
+ e.preventDefault();if(judged)return;const text=$("guess").value.trim();if(!text)return;
+ const q=game[index];const success=[q.answer,...q.aliases].some(a=>normalize(a)===normalize(text));
+ judged=true;history.push(success);if(success)score+=q.points;
+ $("guess").disabled=true;$("guess-actions").classList.add("hidden");$("hint").classList.add("hidden");
+ $("feedback").className="feedback "+(success?"good":"bad");
+ $("feedback").replaceChildren();
+ const h=document.createElement("h3");h.textContent=success?`✓ Correct! +${q.points} points`:`The answer: ${q.answer}`;
+ const p=document.createElement("p");p.textContent=q.detail;$("feedback").append(h,p);
+ $("running-score").textContent=score.toLocaleString()+" PTS";$("next-actions").classList.remove("hidden");
+}
+function finish(){
+ show("results");$("final-score").textContent=score.toLocaleString()+" / 1,400";
+ $("rank-title").textContent=score>=1200?"GTM LEGEND!":score>=800?"GROWTH PRO!":"GROWTH EXPLORER!";
+ $("correct-total").textContent=`${history.filter(Boolean).length} out of 10 correct`;
+ $("outcomes").replaceChildren(...history.map(ok=>{const e=document.createElement("span");e.style.background=ok?"#16a34a":"#e11d48";e.textContent=ok?"✓":"×";return e}));
+ renderBoard();
+}
+function readLocal(){
+ try{const v=JSON.parse(localStorage.getItem("gtm-v5-demo")||"[]");return Array.isArray(v)?v.filter(x=>x&&typeof x.name==="string"&&Number.isFinite(x.score)).slice(0,20):[]}catch{return []}
+}
+function renderBoard(){
+ const all=[...readLocal(),...(player?[player]:[])].sort((a,b)=>b.score-a.score||a.time-b.time);
+ $("leaderboard").replaceChildren();
+ if(!all.length){const p=document.createElement("p");p.textContent="No scores yet. Be the first to claim a spot."; $("leaderboard").append(p)}
+ all.slice(0,10).forEach((p,i)=>{
+  const row=document.createElement("div");row.className="leader-row"+(player&&p.id===player.id?" me":"");
+  const rank=document.createElement("div");rank.className="rank";rank.textContent=i<3?["🥇","🥈","🥉"][i]:"#"+(i+1);
+  const person=document.createElement("div");person.className="person";
+  const b=document.createElement("b");b.textContent=p.name;const small=document.createElement("small");small.textContent=p.title;person.append(b,small);
+  const pts=document.createElement("strong");pts.textContent=p.score.toLocaleString();row.append(rank,person,pts);$("leaderboard").append(row);
+ });
+}
+$("start").addEventListener("click",()=>{show("play");renderQuestion()});
+$("guess-form").addEventListener("submit",submitGuess);
+$("hint-button").addEventListener("click",()=>{$("hint").textContent="💡 "+game[index].hint;$("hint").classList.toggle("hidden")});
+$("next").addEventListener("click",()=>{if(index===9)finish();else{index++;renderQuestion()}});
+$("registration-form").addEventListener("submit",e=>{
+ e.preventDefault();const name=$("player-name").value.trim();const title=$("player-title").value.trim();if(!name||!title)return;
+ player={id:Date.now()+"-"+Math.random().toString(36).slice(2),name,title,score,time:Date.now()};
+ const stored=readLocal();stored.push(player);
+ try{localStorage.setItem("gtm-v5-demo",JSON.stringify(stored.slice(-20)))}catch{}
+ // The player is already in stored; avoid a duplicate current entry on the board.
+ player=null;renderBoard();const all=readLocal().sort((a,b)=>b.score-a.score||a.time-b.time);
+ const position=all.findIndex(p=>p.id===stored[stored.length-1].id)+1;
+ $("registration").classList.add("hidden");$("my-rank").classList.remove("hidden");
+ $("rank-number").textContent="#"+position;$("rank-name").textContent=name+" · "+title;
+});
+$("again").addEventListener("click",()=>{index=0;score=0;history=[];judged=false;player=null;$("registration").classList.remove("hidden");$("my-rank").classList.add("hidden");show("welcome")});
+$("share").addEventListener("click",async()=>{
+ const text=`I scored ${score.toLocaleString()}/1,400 on Guess the GTM 🧠\n${history.filter(Boolean).length}/10 clay visual riddles correct. Can you beat me?\n#GuessTheGTM #GrowthMarketing`;
+ if(navigator.share){try{await navigator.share({title:"Guess the GTM",text});return}catch{}}
+ try{await navigator.clipboard.writeText(text);$("share").textContent="COPIED ✓";setTimeout(()=>$("share").textContent="SHARE SCORE ↗",1800)}catch{window.prompt("Copy your score",text)}
+});
+</script>
+</body>
+</html>
