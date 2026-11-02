@@ -41,7 +41,7 @@
 </head>
 <body>
 <div class="shell">
-<header><div class="brand">FRANKI<br>CHAMAKI</div><div class="tag">GTM LAB / PROTOTYPE V5</div></header>
+<header><div class="brand">FRANKI<br>CHAMAKI</div></header>
 <main>
   <section id="welcome" class="layout">
     <div>
@@ -52,7 +52,7 @@
       <div class="levels"><span class="pill easy">4 EASY × 100</span><span class="pill medium">4 MEDIUM × 150</span><span class="pill hard">2 HARD × 200</span></div>
       <button class="primary" id="start">LET'S PLAY ↗</button>
     </div>
-    <img class="hero-image" src="Frosted Mailbox, Flying Envelopes.png" alt="Clay miniature frozen mailbox sending envelopes">
+    <img class="hero-image" src="/growthgame/Frosted Mailbox, Flying Envelopes.png" alt="Clay miniature frozen mailbox sending envelopes">
   </section>
   <section id="play" class="question-grid hidden">
     <div class="game-head"><span id="number">RIDDLE 01 / 10</span><span class="pill easy" id="difficulty">EASY</span><span class="score" id="running-score">0 PTS</span></div>
@@ -76,16 +76,16 @@
 </div>
 <script>
 const game=[
-{answer:"Cold outbound",aliases:["cold outreach","cold emailing","cold email"],image:"Frosted Mailbox, Flying Envelopes.png",points:100,level:"EASY",hint:"The temperature of unsolicited prospecting.",detail:"Proactively contacting people who have no existing relationship with your business."},
-{answer:"Warm introduction",aliases:["warm intro","warm referral"],image:"Warm clay handshake with glowing envelope.png",points:100,level:"EASY",hint:"A trusted mutual connection opens a door.",detail:"Someone who knows both parties makes an introduction."},
-{answer:"Lead magnet",aliases:["lead magnets"],image:"Hot-Pink Horseshoe Pulls Tiny Prospects.png",points:100,level:"EASY",hint:"An offer that draws prospects in.",detail:"A valuable resource or offer designed to attract potential customers."},
-{answer:"Sales pipeline",aliases:["pipeline","sales pipe"],image:"Playful Clay Sales Pipeline.png",points:100,level:"EASY",hint:"Opportunities travel through stages.",detail:"The stages and opportunities in the sales process."},
-{answer:"Leaky funnel",aliases:["funnel leakage","leaking funnel","leaky sales funnel"],image:"Leaky funnel, slipping customers.png",points:150,level:"MEDIUM",hint:"Prospects are escaping before they convert.",detail:"A conversion process that loses prospects at avoidable points."},
-{answer:"Buying signals",aliases:["buyer intent","intent signals","buying signal","purchase intent"],image:"Clay basket broadcasting buying signals.png",points:150,level:"MEDIUM",hint:"Clues someone may be ready to purchase.",detail:"Behaviours or events suggesting a prospect is interested in buying."},
-{answer:"Growth hacking",aliases:["growth hacker"],image:"Miniature clay growth hacking garden.png",points:150,level:"MEDIUM",hint:"Creative experiments for rapid growth.",detail:"Rapid experimentation to identify efficient ways to grow."},
-{answer:"Customer churn",aliases:["churn","churn rate","customer attrition"],image:"Tiny Customers Take the Pink Exit.png",points:150,level:"MEDIUM",hint:"When customers leave.",detail:"The loss of existing customers or subscribers."},
-{answer:"Dark funnel",aliases:["dark social","dark funnel marketing"],image:"Tiny Teams Enter the Dark Funnel.png",points:200,level:"HARD",hint:"Buyer activity conventional attribution can't see.",detail:"Research and buyer interactions difficult to capture through conventional tracking."},
-{answer:"Multi-touch attribution",aliases:["multitouch attribution","multi touch attribution","multi touch"],image:"Four paths, one golden trophy.png",points:200,level:"HARD",hint:"Several interactions share conversion credit.",detail:"Assigning conversion credit across multiple marketing touchpoints."}
+{answer:"Cold outbound",aliases:["cold outreach","cold emailing","cold email"],image:"/growthgame/Frosted Mailbox, Flying Envelopes.png",points:100,level:"EASY",hint:"The temperature of unsolicited prospecting.",detail:"Proactively contacting people who have no existing relationship with your business."},
+{answer:"Warm introduction",aliases:["warm intro","warm referral"],image:"/growthgame/Warm clay handshake with glowing envelope.png",points:100,level:"EASY",hint:"A trusted mutual connection opens a door.",detail:"Someone who knows both parties makes an introduction."},
+{answer:"Lead magnet",aliases:["lead magnets"],image:"/growthgame/Hot-Pink Horseshoe Pulls Tiny Prospects.png",points:100,level:"EASY",hint:"An offer that draws prospects in.",detail:"A valuable resource or offer designed to attract potential customers."},
+{answer:"Sales pipeline",aliases:["pipeline","sales pipe"],image:"/growthgame/Playful Clay Sales Pipeline.png",points:100,level:"EASY",hint:"Opportunities travel through stages.",detail:"The stages and opportunities in the sales process."},
+{answer:"Leaky funnel",aliases:["funnel leakage","leaking funnel","leaky sales funnel"],image:"/growthgame/Leaky funnel, slipping customers.png",points:150,level:"MEDIUM",hint:"Prospects are escaping before they convert.",detail:"A conversion process that loses prospects at avoidable points."},
+{answer:"Buying signals",aliases:["buyer intent","intent signals","buying signal","purchase intent"],image:"/growthgame/Clay basket broadcasting buying signals.png",points:150,level:"MEDIUM",hint:"Clues someone may be ready to purchase.",detail:"Behaviours or events suggesting a prospect is interested in buying."},
+{answer:"Growth hacking",aliases:["growth hacker"],image:"/growthgame/Miniature clay growth hacking garden.png",points:150,level:"MEDIUM",hint:"Creative experiments for rapid growth.",detail:"Rapid experimentation to identify efficient ways to grow."},
+{answer:"Customer churn",aliases:["churn","churn rate","customer attrition"],image:"/growthgame/Tiny Customers Take the Pink Exit.png",points:150,level:"MEDIUM",hint:"When customers leave.",detail:"The loss of existing customers or subscribers."},
+{answer:"Dark funnel",aliases:["dark social","dark funnel marketing"],image:"/growthgame/Tiny Teams Enter the Dark Funnel.png",points:200,level:"HARD",hint:"Buyer activity conventional attribution can't see.",detail:"Research and buyer interactions difficult to capture through conventional tracking."},
+{answer:"Multi-touch attribution",aliases:["multitouch attribution","multi touch attribution","multi touch"],image:"/growthgame/Four paths, one golden trophy.png",points:200,level:"HARD",hint:"Several interactions share conversion credit.",detail:"Assigning conversion credit across multiple marketing touchpoints."}
 ];
 const $=id=>document.getElementById(id);
 const normalize=s=>s.toLowerCase().replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
