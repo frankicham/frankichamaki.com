@@ -89,6 +89,10 @@ svg{display:block;width:100%;height:auto}
 .site-header .nav-cta{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:8px;background:#111;color:#fff;text-decoration:none;font-weight:800;font-size:14px;white-space:nowrap}
 .site-header .nav-cta:hover{background:#FF1493}
 @media(max-width:1080px){.site-header .nav-wrap{grid-template-columns:1fr auto}.site-header .nav-cta{display:none}.site-header .menu-toggle{display:block;grid-column:2;grid-row:1}.site-header .site-nav{grid-column:1/-1;display:none;padding:0 0 18px;flex-direction:column;align-items:flex-start;gap:14px}.site-header .site-nav.open{display:flex}}
+
+/* Accessibility: skip link is hidden until keyboard focus. */
+.skip-link{position:fixed;left:12px;top:12px;z-index:1000;padding:12px 16px;background:#111111;color:#FFFFFF;border:2px solid #FF1493;border-radius:6px;font:700 14px Inter,system-ui,sans-serif;text-decoration:none;transform:translateY(-180%);opacity:0;pointer-events:none}
+.skip-link:focus,.skip-link:focus-visible{transform:translateY(0);opacity:1;pointer-events:auto;outline:3px solid #FF1493;outline-offset:3px}
 </style>
 <a class="skip-link" href="#brain-main">Skip to content</a>
 <header class="site-header" id="top"><div class="container nav-wrap">
